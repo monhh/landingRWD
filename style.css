@@ -266,6 +266,40 @@ p[data-width="wide"] {
 
 }
 
+/* cta ================================================================== */
+.cta {
+	position: relative;
+	isolation: isolate;/* to prevent elements from blending with their backdrops */
+	text-align: center;
+}
+
+@media (min-width: 50em) {
+	.cta {
+		text-align: left;
+	}
+}
+
+.cta::before {
+	content: "";
+
+	position: absolute;
+	z-index: -1;
+	inset: 0;
+
+	background-image: url('./images/bg-tablet-pattern.svg'),url('./images/bg-tablet-pattern.svg');
+	background-position: -15rem -5rem, 80rem -42rem;
+	background-repeat: no-repeat;
+	opacity: 0.1;
+}
+
+
+
+
+
+/* end cta ============================================================== */
+
+
+
 
 /* Utility classes (at the end to overwrite)============================
 ======================================================================== */
@@ -291,6 +325,32 @@ https://a11y-guidelines.orange.com/en/articles/accessible-hiding/ */
 	width: min(var(--max-width), 100% - (var(--padding) * 2));
 	margin-inline: auto;
 }
+.even-columns {
+	/* los elementos dentro del contenedor de cuadrícula se distribuyen automáticamente en las celdas de la cuadrícula. 
+	Si no se especifica un tamaño para las columnas, los elementos pueden expandirse para ocupar todo el espacio disponible en la celda */
+	display: grid;
+	gap: 1rem;
+}
+@media (min-width: 50em) {
+	.even-columns {
+		grid-auto-flow: column;
+		grid-auto-columns: 1fr;
+	}
+}
+
+.vertical-align-center {
+	align-items: center;
+}
+
+.justify-self-end {
+	justify-self: end;
+}
+
+@media (min-width: 50em) {
+	.justify-self-end-md {
+		justify-self: end;
+	}
+}
 
 /* from Andy Bell. >(childdren) but not the first child. (in this case low specificity, for easy overwriting) */
 :where(.flow :not(:first-child)) {
@@ -298,19 +358,7 @@ https://a11y-guidelines.orange.com/en/articles/accessible-hiding/ */
 	margin-top: var(--flow-spacer, 3em);
   }
   
-.even-columns {
-	/* los elementos dentro del contenedor de cuadrícula se distribuyen automáticamente en las celdas de la cuadrícula. 
-	Si no se especifica un tamaño para las columnas, los elementos pueden expandirse para ocupar todo el espacio disponible en la celda */
-	display: grid;
-	gap: 1rem;
-}
   
-@media (min-width: 50em) {
-	.even-columns {
-		grid-auto-flow: column;
-		grid-auto-columns: 1fr;
-	}
-}
   
   
 .text-primary-400 {
